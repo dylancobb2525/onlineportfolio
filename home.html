@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dylan Cobb | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f0f0f;
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .headshot-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 30px;
+            border: 3px solid #000;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+            opacity: 0;
+        }
+        
+        .headshot {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0;
+        }
+        
+        .name-gradient {
+            background: linear-gradient(135deg, #4169e1, #7b68ee, #9370db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .intro {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background-color: #fff;
+            color: #0f0f0f;
+        }
+        
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .dot {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="background" id="background"></div>
+    
+    <div class="container">
+        <div class="headshot-container" id="headshot-container">
+            <img src="memoji/memoji.jpeg" alt="Dylan Cobb Memoji" class="headshot" id="headshot">
+        </div>
+        
+        <h1 id="greeting">Hello, I'm <span class="name-gradient">Dylan Cobb</span></h1>
+        <p class="intro" id="intro">Welcome to my portfolio</p>
+        
+        <a href="portfolio.html" class="btn" id="cta">Proceed to Portfolio</a>
+    </div>
+    
+    <!-- Include anime.js library -->
+    <script src="lib/anime.min.js"></script>
+    
+    <script>
+        // Create background animation with dots
+        const background = document.getElementById('background');
+        
+        // Create dots
+        for (let i = 0; i < 50; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            
+            // Random size between 5 and 50px
+            const size = anime.random(5, 50);
+            dot.style.width = size + 'px';
+            dot.style.height = size + 'px';
+            
+            // Random position
+            dot.style.left = anime.random(0, 100) + '%';
+            dot.style.top = anime.random(0, 100) + '%';
+            
+            background.appendChild(dot);
+        }
+        
+        // Animate dots
+        anime({
+            targets: '.dot',
+            translateX: function() {
+                return anime.random(-30, 30) + 'vw';
+            },
+            translateY: function() {
+                return anime.random(-30, 30) + 'vh';
+            },
+            scale: function() {
+                return anime.random(0.3, 1.5);
+            },
+            opacity: function() {
+                return anime.random(0.1, 0.4);
+            },
+            duration: function() {
+                return anime.random(3000, 7000);
+            },
+            delay: function() {
+                return anime.random(0, 1000);
+            },
+            direction: 'alternate',
+            loop: true,
+            easing: 'easeInOutQuad'
+        });
+        
+        // Main animation sequence
+        const mainTimeline = anime.timeline({
+            easing: 'easeOutExpo',
+            duration: 800
+        });
+        
+        mainTimeline
+            .add({
+                targets: '#headshot-container',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                duration: 1200
+            })
+            .add({
+                targets: '#greeting',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 1000
+            }, '-=400')
+            .add({
+                targets: '#intro',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 800
+            }, '-=600')
+            .add({
+                targets: '#cta',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 800
+            }, '-=400');
+            
+        // Button hover effect
+        const ctaButton = document.getElementById('cta');
+        
+        ctaButton.addEventListener('mouseenter', () => {
+            anime({
+                targets: ctaButton,
+                scale: 1.05,
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        });
+        
+        ctaButton.addEventListener('mouseleave', () => {
+            anime({
+                targets: ctaButton,
+                scale: 1,
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        });
+    </script>
+</body>
+</html> 
