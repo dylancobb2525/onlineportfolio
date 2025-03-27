@@ -854,37 +854,92 @@
         <div class="content" id="projects-content">
             <h2 class="section-title">My Projects</h2>
             <div class="projects-grid">
-                <!-- Project Cards (Placeholders) -->
+                <!-- Deep Content Project -->
                 <div class="project-card">
-                    <div class="project-img">Project Image</div>
+                    <div class="project-img" style="background: #f8f9fa; overflow: hidden; position: relative;">
+                        <a href="https://deepcontentv2.vercel.app" target="_blank" style="width:100%; height:100%; display:block; position: relative; overflow: hidden; text-decoration: none;">
+                            <!-- Deep Content Site Representation with less zoom -->
+                            <div style="width:100%; height:100%; display:flex; flex-direction:column; transform: scale(0.85); transform-origin: top center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(0.9)'" onmouseout="this.style.transform='scale(0.85)'">
+                                <!-- Header -->
+                                <div style="height:40px; background-color:#fff; display:flex; align-items:center; justify-content:space-between; padding:0 20px; border-bottom:1px solid #e5e7eb;">
+                                    <div style="font-weight:bold; font-size:16px; color:#000;">Deep Content</div>
+                                    <div style="display:flex; gap:20px; align-items:center;">
+                                        <div style="color:#000; font-size:14px;">Home</div>
+                                        <div style="background-color:#2563eb; color:#fff; padding:4px 12px; border-radius:5px; font-size:14px;">Sign in</div>
+                                    </div>
+                                </div>
+                                <!-- Main Content -->
+                                <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:15px; text-align:center; background-color:#f8f9fa;">
+                                    <div style="font-size:24px; font-weight:bold; color:#000; margin:10px 0;">Welcome to Deep Content</div>
+                                    <div style="font-size:14px; color:#333; margin-bottom:15px;">Research Made Easy. Create well-researched, authentic content in minutes.</div>
+                                    
+                                    <!-- Feature Cards -->
+                                    <div style="display:flex; gap:10px; margin-top:15px; width:100%; justify-content:center;">
+                                        <div style="background-color:#fff; padding:15px; border-radius:8px; width:80px; display:flex; flex-direction:column; align-items:center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                                            <div style="color:#2563eb; font-size:18px; margin-bottom:5px;">💡</div>
+                                            <div style="font-weight:bold; color:#000; font-size:11px;">Smart Research</div>
+                                        </div>
+                                        <div style="background-color:#fff; padding:15px; border-radius:8px; width:80px; display:flex; flex-direction:column; align-items:center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                                            <div style="color:#2563eb; font-size:18px; margin-bottom:5px;">✏️</div>
+                                            <div style="font-weight:bold; color:#000; font-size:11px;">Quality Content</div>
+                                        </div>
+                                        <div style="background-color:#fff; padding:15px; border-radius:8px; width:80px; display:flex; flex-direction:column; align-items:center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                                            <div style="color:#2563eb; font-size:18px; margin-bottom:5px;">⚡</div>
+                                            <div style="font-weight:bold; color:#000; font-size:11px;">Lightning Fast</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Google Sign In Button -->
+                                    <div style="margin-top:20px; background-color:#fff; border-radius:4px; padding:8px 15px; display:flex; align-items:center; box-shadow:0 1px 3px rgba(0,0,0,0.1); width:200px;">
+                                        <div style="color:#4285F4; font-size:18px; margin-right:10px;">G</div>
+                                        <div style="color:#333; font-size:14px;">Sign in with Google</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                     <div class="project-info">
-                        <h3 class="project-title">Project 1</h3>
-                        <p class="project-desc">Description of project 1 goes here. Brief overview of what it does and technologies used.</p>
+                        <h3 class="project-title">Deep Content</h3>
+                        <p class="project-desc">A sophisticated content creation tool that helps users develop well-researched, authentic content that truly reflects their voice. Uses AI to guide the content creation process while ensuring the user's perspective remains central.</p>
                         <div class="project-tags">
-                            <span class="tag">HTML/CSS</span>
-                            <span class="tag">JavaScript</span>
+                            <span class="tag">Next.js</span>
+                            <span class="tag">React</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Tailwind CSS</span>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <a href="https://github.com/dylancobb2525/deep-content.git" target="_blank" style="color: #7b68ee; text-decoration: none; font-size: 0.9rem;">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                            <a href="https://deepcontentv2.vercel.app" target="_blank" style="color: #7b68ee; text-decoration: none; margin-left: 15px; font-size: 0.9rem;">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
                         </div>
                     </div>
                 </div>
+                <!-- Project Cards (Placeholders) -->
                 <div class="project-card">
-                    <div class="project-img">Project Image</div>
+                    <div class="project-img" style="display: flex; justify-content: center; align-items: center; background-color: #333; color: #fff; font-weight: bold; font-size: 1.2rem;">
+                        Project in progress...
+                    </div>
                     <div class="project-info">
-                        <h3 class="project-title">Project 2</h3>
-                        <p class="project-desc">Description of project 2 goes here. Brief overview of what it does and technologies used.</p>
+                        <h3 class="project-title">Resumate</h3>
+                        <p class="project-desc">An AI-powered tool that creates resumes for people in just a few minutes. Built to help future pledges in my fraternity easily make their resumes for peer review.</p>
                         <div class="project-tags">
                             <span class="tag">React</span>
                             <span class="tag">Node.js</span>
+                            <span class="tag">OpenAI</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
-                    <div class="project-img">Project Image</div>
+                    <div class="project-img" style="display: flex; justify-content: center; align-items: center; background-color: #333; color: #fff; font-weight: bold; font-size: 1.5rem;">
+                        Coming Soon
+                    </div>
                     <div class="project-info">
-                        <h3 class="project-title">Project 3</h3>
-                        <p class="project-desc">Description of project 3 goes here. Brief overview of what it does and technologies used.</p>
+                        <h3 class="project-title">Coming Soon</h3>
+                        <p class="project-desc"></p>
                         <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Machine Learning</span>
                         </div>
                     </div>
                 </div>
