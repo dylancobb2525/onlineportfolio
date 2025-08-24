@@ -6,1762 +6,1921 @@
     <title>Dylan Cobb | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-bg: #000000;
+            --secondary-bg: #111111;
+            --card-bg: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --accent-navy: #1e3a8a;
+            --accent-gray: #6b7280;
+            --accent-gradient: linear-gradient(135deg, #1e3a8a, #374151);
+            --border-color: #2a2a2a;
+            --hover-bg: #252525;
+            --max-width: 1200px;
+            --section-spacing: 120px;
+            --content-spacing: 80px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #000000; /* Darker black background to match emoji */
-            color: #fff;
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
-        
-        /* Background animation */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(15, 15, 15, 0.3) 0%, rgba(10, 10, 10, 0.3) 50%, rgba(0, 0, 0, 0.3) 100%);
-            z-index: -2;
-            opacity: 0.7;
+
+        /* Section backgrounds for contrast */
+        #home {
+            background-color: #000000;
         }
-        
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+
+        #tools {
+            background-color: #0a0a0a;
         }
-        
-        .bg-line {
-            position: absolute;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(123, 104, 238, 0.7), transparent);
-            opacity: 0;
-            pointer-events: none;
-            box-shadow: 0 0 12px rgba(123, 104, 238, 0.6);
-            transition: opacity 0.8s ease-in-out;
+
+        #experience {
+            background-color: #000000;
         }
-        
-        .bg-animation .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(123, 104, 238, 0.15);
-            pointer-events: none;
+
+        #projects {
+            background-color: #0a0a0a;
         }
-        
-        /* Navbar Styles */
+
+        #education {
+            background-color: #000000;
+        }
+
+        #contact {
+            background-color: #0a0a0a;
+        }
+
+        /* Global Layout */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Header/Navigation - Circular notification style */
         .navbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(15, 15, 15, 0.9);
-            backdrop-filter: blur(5px);
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
             z-index: 100;
-            padding: 20px 0;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+            padding: 8px 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
-        
-        .navbar.scrolled {
-            padding: 15px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+
+        .navbar:hover {
+            background: rgba(0, 0, 0, 0.9);
+            border-color: rgba(30, 58, 138, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
         }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+
+        .nav-content {
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 0 20px;
-            position: relative;
+            justify-content: center;
         }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            position: absolute;
-            left: 20px;
-        }
-        
-        .logo span {
-            background: linear-gradient(135deg, #4169e1, #7b68ee, #9370db, #6a5acd, #8a2be2);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-            animation: gradientAnimation 6s ease infinite, glowAnimation 3s ease-in-out infinite;
-            text-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
-        }
-        
+
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 30px;
-            margin: 0 auto;
+            gap: 0;
+            margin: 0;
+            padding: 0;
         }
-        
+
         .nav-links a {
-            color: #fff;
+            color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 600;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            letter-spacing: 0.5px;
+            padding: 8px 16px;
+            border-radius: 24px;
+
             position: relative;
-            padding: 5px 0;
-            transition: color 0.3s ease, opacity 0.5s ease; /* Added opacity transition */
-            opacity: 0.5; /* Default state is faded */
+            text-transform: uppercase;
+            font-size: 0.75rem;
         }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #4169e1, #7b68ee, #9370db);
-            transition: width 0.3s ease;
-        }
-        
+
         .nav-links a:hover {
-            opacity: 1; /* Full opacity on hover */
+            color: var(--text-primary);
+            background: rgba(30, 58, 138, 0.1);
+            transform: translateY(-1px);
         }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
+
         .nav-links a.active {
-            opacity: 1; /* Full opacity when active */
+            color: var(--text-primary);
+            background: rgba(30, 58, 138, 0.2);
+            box-shadow: 0 0 20px rgba(30, 58, 138, 0.3);
         }
-        
-        .nav-links a.active::after {
-            width: 100%;
-        }
-        
-        /* Section Styles */
-        section {
-            padding: 60px 20px;
-            min-height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            transition: opacity 0.8s ease-in-out; /* Smoother, longer transition */
-        }
-        
-        /* Specific adjustment for the education section */
-        #education {
-            padding-top: 40px;
-            min-height: 70vh;
-        }
-        
-        /* Section Divider */
-        .section-divider {
+
+        .nav-links a::before {
+            content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, rgba(123, 104, 238, 0.7), transparent);
-            box-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
-            opacity: 0; /* Start invisible */
-            transform: scaleX(0.3); /* Start contracted */
-            transition: opacity 0.8s ease, transform 1s ease; /* Smooth transition */
-        }
-        
-        .divider-icon {
-            position: absolute;
-            bottom: -15px;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%) scale(0); /* Start scaled down */
-            width: 36px;
-            height: 36px;
-            background-color: #000000;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(30, 58, 138, 0.3) 0%, transparent 70%);
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-            box-shadow: 0 0 10px rgba(123, 104, 238, 0.4);
-            opacity: 0; /* Start invisible */
-            transition: transform 0.8s ease, opacity 0.8s ease; /* Smooth transition */
+            transition: all 0.4s ease;
+            z-index: -1;
         }
-        
-        .divider-icon::before {
-            content: '';
-            width: 14px;
-            height: 14px;
-            background: linear-gradient(135deg, #4169e1, #7b68ee, #9370db);
-            border-radius: 50%;
-            animation: pulse 3s infinite;
-            box-shadow: 0 0 8px rgba(123, 104, 238, 0.8);
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            width: 120%;
+            height: 300%;
         }
-        
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(0.8); opacity: 0.5; }
-        }
-        
-        .content {
-            max-width: 1000px;
-            width: 100%;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(135deg, #4169e1, #7b68ee, #9370db, #6a5acd, #8a2be2);
-            background-size: 200% 200%;
-            animation: gradientAnimation 6s ease infinite;
-            box-shadow: 0 0 12px rgba(123, 104, 238, 0.6);
-        }
-        
-        /* Hero Section */
+
+        /* Hero Section - Compact layout like Preston's */
         .hero {
-            min-height: 100vh;
-            background-position: center;
-            background-size: cover;
-            position: relative;
+            padding: 80px 0 60px;
+            min-height: 85vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding-top: 120px;
-            padding-bottom: 40px;
-        }
-        
-        .hero-container {
-            max-width: 1200px;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            gap: 40px; /* Add some space between the columns */
-        }
-        
-        .hero-left {
-            flex: 1.2; /* Give slightly more space to the headshot side */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center the headshot horizontally */
             justify-content: center;
-            padding-right: 0; /* Remove the padding */
         }
-        
-        .hero-right {
-            flex: 1.5; /* Give more space to the content side */
+
+        .hero-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-        }
-        
-        .memoji-container {
-            width: 400px; /* Increased size from 300px */
-            height: 400px; /* Increased size from 300px */
-            border-radius: 50%; /* Make it circular */
-            overflow: hidden;
-            margin-bottom: 30px;
-            opacity: 0;
-            background-color: #000000; /* Match website background */
-            border: 4px solid rgba(123, 104, 238, 0.7); /* Add purple border matching theme */
-            box-shadow: 0 5px 25px rgba(123, 104, 238, 0.5); /* Add glow effect */
-        }
-        
-        .memoji-img {
+            max-width: 1000px;
             width: 100%;
-            height: 100%;
-            object-fit: cover; /* Changed to cover to fill circle */
-            mix-blend-mode: normal;
         }
-        
-        .orbit-container {
-            position: relative;
-            width: 300px;
-            height: 120px;
-            margin: 40px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-        }
-        
-        .social-orbit {
-            display: none; /* Hide this since we're not using orbiting anymore */
-        }
-        
-        .social-link {
-            position: relative;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            z-index: 10;
-            margin: 0 10px;
-            aspect-ratio: 1/1;
-        }
-        
-        .social-link:hover {
-            transform: translateY(-8px) scale(1.1) !important;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transform: scale(0);
-            transition: transform 0.5s ease;
-        }
-        
-        .social-link:hover::before {
-            transform: scale(2);
-            opacity: 0;
-        }
-        
-        .social-link.github {
-            background: linear-gradient(135deg, #6e5494, #333);
-        }
-        
-        .social-link.linkedin {
-            background: linear-gradient(135deg, #0077b5, #00a0dc);
-        }
-        
-        .social-link.twitter {
-            background: linear-gradient(135deg, #1DA1F2, #14171A);
-        }
-        
-        .social-icon {
-            width: 35px;
-            height: 35px;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
-            position: relative;
-            z-index: 5;
-        }
-        
-        .hero h1 {
-            font-size: 4rem; /* Increased from 3.5rem */
+
+        .hero-image {
             margin-bottom: 20px;
-            opacity: 0;
         }
-        
-        .hero p {
-            font-size: 1rem; /* Decreased from 1.2rem */
-            line-height: 1.5;
-            margin-bottom: 30px;
-            opacity: 0;
-            max-width: 90%; /* Limit width to prevent taking too much space */
+
+        .profile-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(30, 58, 138, 0.2);
+        }
+
+        .hero-text {
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero-name {
+            color: var(--text-primary);
+            text-shadow: 0 0 20px rgba(107, 114, 128, 0.4);
+            filter: drop-shadow(0 0 8px rgba(107, 114, 128, 0.3));
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+            max-width: 90%;
             margin-left: auto;
             margin-right: auto;
         }
-        
-        /* Projects Section */
-        #projects {
-            padding: 120px 0 80px;
-            position: relative;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            position: relative;
-            margin-bottom: 20px;
-        }
-        
-        .project-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-        
-        .project-img {
-            background-color: #333 !important;
-            height: 200px;
-            border-radius: 8px 8px 0 0;
-            overflow: hidden;
-        }
-        
-        .project-info {
-            padding: 20px;
-        }
-        
-        .project-title {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        
-        .project-desc {
-            color: #ccc;
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .tag {
-            background: linear-gradient(135deg, #4169e1, #7b68ee, #9370db);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        
-        /* Load More Button */
-        .load-more-container {
+
+        /* Contact Info Section */
+        .contact-info {
             display: flex;
             justify-content: center;
-            margin-top: 30px;
-            width: 100%;
+            gap: 40px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
         }
-        
-        .load-more-btn {
-            background-color: rgba(40, 44, 52, 0.8);
-            color: #fff;
-            border: 2px solid #5a67d8;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .load-more-btn:hover {
-            background-color: #5a67d8;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* Resume Section */
-        .resume-content {
+
+        .contact-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-            width: 100%;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
-        
-        .resume-buttons {
+
+        .contact-item i {
+            width: 16px;
+            color: var(--accent-navy);
+            font-size: 0.9rem;
+        }
+
+        /* All Buttons Row */
+        .all-buttons {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            width: 100%;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
         }
-        
+
+        .social-link,
         .resume-btn {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+
+            min-width: 120px;
+            height: 40px;
+        }
+
+        .social-link:hover,
+        .resume-btn:hover {
+            background: var(--hover-bg);
+            border-color: var(--accent-navy);
+            color: var(--accent-navy);
+            transform: translateY(-2px);
+        }
+
+        .resume-btn.primary {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        .resume-btn.primary:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.4);
+        }
+
+        /* Tools Section */
+        .tools-section {
+            padding: var(--content-spacing) 0;
+            overflow: hidden;
+        }
+
+        .tools-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .tools-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .tools-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .ticker-container {
+            position: relative;
+            height: 100px;
+            overflow: hidden;
+            mask: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+        }
+
+        .ticker-track {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            animation: scroll 40s linear infinite;
+            width: max-content;
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            white-space: nowrap;
+            font-weight: 500;
+            color: var(--text-secondary);
+
+            min-width: 160px;
+        }
+
+
+
+        .tool-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .tool-logo.keep-color {
+            filter: none;
+        }
+
+        .tool-logo.github,
+        .tool-logo.openai {
+            filter: none;
+        }
+
+
+
+        .tool-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Main Sections */
+        .section {
+            padding: var(--section-spacing) 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--content-spacing);
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Experience Section - Preston inspired */
+        .experience-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .experience-list .experience-item:nth-child(5) {
+            grid-column: 1 / -1;
+            max-width: 50%;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .experience-list {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .experience-list .experience-item:nth-child(5) {
+                grid-column: auto;
+                max-width: 100%;
+                margin: 0;
+            }
+        }
+
+        .experience-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+
+            position: relative;
+        }
+
+
+
+        .experience-header {
+            margin-bottom: 16px;
+        }
+
+        .experience-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .experience-company {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .experience-role {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent-navy);
+            margin-bottom: 6px;
+        }
+
+        .experience-location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .experience-location i {
+            font-size: 0.8rem;
+            color: var(--accent-navy);
+        }
+
+        .experience-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .experience-tag {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .experience-tag.professional {
+            background: rgba(30, 58, 138, 0.15);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .experience-tag.academic {
+            background: rgba(127, 29, 29, 0.15);
+            color: #dc2626;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+        }
+
+        .experience-bullets {
+            margin-top: 12px;
+        }
+
+        .experience-bullets ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .experience-bullets li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .experience-bullets li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-navy);
+            font-weight: bold;
+        }
+
+        /* Projects Section - Cards Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-navy);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-image {
+            height: 200px;
+            background: var(--secondary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 32px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tech-tag {
+            padding: 6px 12px;
+            background: rgba(30, 58, 138, 0.1);
+            color: var(--accent-navy);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent-navy);
+        }
+
+        /* Projects Section - Dropdown Style */
+        .projects-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .project-category {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .category-header {
+            padding: 20px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            border-bottom: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .category-header:hover {
+            border-bottom-color: var(--accent-navy);
+        }
+
+        .category-header.active {
+            border-bottom-color: var(--accent-navy);
+        }
+
+        .category-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .category-icon {
+            font-size: 1rem;
+            color: var(--accent-navy);
+            transform: rotate(0deg);
+            transition: transform 0.3s ease;
+            font-weight: 600;
+        }
+
+        .category-header.active .category-icon {
+            transform: rotate(45deg);
+        }
+
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .category-content.active {
+            max-height: 1000px;
+        }
+
+        .projects-list {
+            padding: 24px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .project-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .project-item:hover {
+            border-color: var(--accent-navy);
+            background: var(--hover-bg);
+        }
+
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30, 58, 138, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .project-image-small {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-info {
+            flex: 1;
+        }
+
+        .project-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .project-summary {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 24px 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .modal-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .modal-links {
+            display: flex;
             gap: 12px;
-            background: linear-gradient(135deg, #4169e1, #7b68ee, #9370db);
-            background-size: 200% 200%;
-            color: #fff;
-            padding: 16px 30px;
+            flex-wrap: wrap;
+        }
+
+        .modal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--accent-gradient);
             border: none;
             border-radius: 8px;
-            font-size: 1.2rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(123, 104, 238, 0.4);
+            color: white;
             text-decoration: none;
-            min-width: 220px;
-            animation: gradientAnimation 6s ease infinite;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
-        
-        .resume-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(123, 104, 238, 0.6);
+
+        .modal-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
         }
-        
-        .resume-btn i {
-            font-size: 1.4rem;
-        }
-        
+
         /* Education Section */
         .education-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
         }
-        
+
         .education-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 25px;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-            text-align: center; /* Center all content */
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
         }
-        
+
         .education-card:hover {
-            transform: translateY(-5px);
+            border-color: var(--accent-navy);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
-        
-        .edu-title {
+
+        .education-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 16px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .education-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .education-degree {
             font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
-        
-        .edu-subtitle {
-            font-size: 1rem;
-            color: #aaa;
-            margin-bottom: 15px;
+
+        .education-school {
+            color: var(--accent-navy);
+            font-weight: 500;
+            margin-bottom: 16px;
         }
-        
-        .edu-date {
+
+        .education-date {
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            color: #777;
-            margin-bottom: 20px; /* Increased margin to make space for logo */
         }
-        
-        .school-logo {
-            width: 120px; /* Control logo size */
-            height: auto;
-            margin: 10px auto; /* Center logo */
-            display: block;
-        }
-        
+
         /* Contact Section */
+        .contact-section {
+            background: var(--secondary-bg);
+            border-radius: 24px;
+            padding: var(--content-spacing);
+            margin: 10px 0 40px 0;
+        }
+
         .contact-form {
-            margin-top: 40px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-        }
-        
-        .form-group {
             margin-bottom: 20px;
         }
-        
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
         .form-group.full {
             grid-column: 1 / -1;
         }
-        
-        input, textarea {
-            width: 100%;
-            padding: 12px 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, #4169e1, #7b68ee, #9370db);
-            color: #fff;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            transition: transform 0.3s ease;
-            justify-self: start;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-3px);
-        }
-        
-        /* Notification styles */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #4169e1, #7b68ee, #9370db);
-            background-size: 200% 200%;
-            animation: gradientAnimation 6s ease infinite;
-            color: white;
-            padding: 15px 25px;
+
+        .form-input,
+        .form-textarea {
+            padding: 12px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-navy);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px 24px;
+            background: var(--accent-gradient);
+            border: none;
+            border-radius: 12px;
+            color: white;
             font-size: 1rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            transform: translateX(150%);
-            transition: transform 0.4s ease-out;
-            max-width: 350px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        .notification-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-        
-        .notification-title {
             font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .notification-message {
-            opacity: 0.9;
-        }
-        
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
             cursor: pointer;
-            position: absolute;
-            right: 20px;
+
         }
-        
-        .bar {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            transition: all 0.3s ease;
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(30, 58, 138, 0.4);
         }
-        
-        @media (max-width: 992px) {
-            .hero-container {
-                flex-direction: column;
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 968px) {
+            :root {
+                --section-spacing: 80px;
+                --content-spacing: 60px;
             }
             
-            .hero-left, .hero-right {
-                width: 100%;
+            .container {
+                padding: 0 24px;
+            }
+            
+            .nav-content {
+                padding: 0 24px;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
                 text-align: center;
-                align-items: center;
-                margin-bottom: 50px;
             }
             
-            .memoji-container {
-                width: 300px;
-                height: 300px;
-                margin: 0 auto 30px;
+            .hero-title {
+                font-size: 2.5rem;
             }
-        }
-        
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
+            
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
             }
             
             .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
+                display: none;
+            }
+        }
+
+        /* Smooth scrolling and animations */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .all-buttons {
                 flex-direction: column;
-                background-color: rgba(15, 15, 15, 0.95);
-                text-align: center;
-                padding: 20px 0;
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: all 0.4s ease;
-                margin: 0;
+                align-items: center;
             }
             
-            .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            .social-link,
+            .resume-btn {
+                min-width: 200px;
             }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .resume-content {
-                flex-direction: column;
-            }
-            
-            .orbit-container {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .social-orbit {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .social-link {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .social-icon {
-                width: 35px;
-                height: 35px;
-            }
-        }
-        
-        /* Animated gradient effect class */
-        .animated-gradient {
-            background: linear-gradient(270deg, #4169e1, #7b68ee, #9370db, #6a5acd, #8a2be2);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradientAnimation 6s ease infinite;
-            text-shadow: 0 0 18px rgba(123, 104, 238, 0.45);
-        }
-        
-        .animated-gradient-bg {
-            background: linear-gradient(270deg, #4169e1, #7b68ee, #9370db, #6a5acd, #8a2be2);
-            background-size: 200% 200%;
-            animation: gradientAnimation 6s ease infinite;
-            box-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
-        }
-        
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes glowAnimation {
-            0% { text-shadow: 0 0 8px rgba(123, 104, 238, 0.35); }
-            50% { text-shadow: 0 0 22px rgba(123, 104, 238, 0.75); }
-            100% { text-shadow: 0 0 8px rgba(123, 104, 238, 0.35); }
         }
     </style>
 </head>
 <body>
-    <!-- Background animation container -->
-    <div class="bg-animation" id="bg-animation"></div>
-    
-    <!-- Navigation Bar -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <span class="animated-gradient">DC</span>
-            </div>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="menu-toggle" id="menu-toggle">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-left">
-                <div class="memoji-container" id="memoji-container">
-                    <img src="headshot/headshot.jpeg" alt="Dylan Cobb" class="memoji-img">
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image fade-in">
+                    <img src="headshot/headshot.jpeg" alt="Dylan Cobb" class="profile-image">
+                </div>
+                <div class="hero-text fade-in">
+                    <h1 class="hero-title">Hi, I'm <span class="hero-name">Dylan Cobb</span></h1>
+                    
+                    <p class="hero-description">I am a sophomore at the University of South Carolina majoring in Computer Information Systems with a minor in Business Administration. I enjoy working with software, generative AI, and agentic AI integrations, as well as exploring the intersection of technology with social media marketing and paid advertising. My passion for these areas has been shaped by a variety of internships and job opportunities, where I've gained hands-on experience that continues to fuel my drive to grow in the tech industry. Beyond academics, I value building practical skills in both technology and business, and I look forward to expanding my knowledge as I pursue new opportunities.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>dylancobb2525@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (908) 910-6168</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Freehold, NJ</span>
+                        </div>
+                    </div>
+
+                    <div class="all-buttons">
+                        <a href="https://github.com/dylancobb2525?tab=repositories" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/dylan-cobb25/" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://x.com/dylancobbb" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="newresume/DCOBBRESUME.pdf" download class="resume-btn primary">
+                            <i class="fas fa-download"></i>
+                            <span>Download Resume</span>
+                        </a>
+                        <a href="newresume/DCOBBRESUME.pdf" target="_blank" class="resume-btn">
+                            <i class="fas fa-eye"></i>
+                            <span>View Resume</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            
-            <div class="hero-right">
-                <h1 id="hero-title"><span class="animated-gradient">Dylan Cobb</span></h1>
-                <p id="hero-text">I'm a freshman at the University of South Carolina majoring in Computer Science. Through my academic experiences and management role at a catering hall, I aim to dive deeper into the tech industry while integrating business aspects. I take pride in my university involvement and continuously develop my problem-solving and team-building skills. I'm also passionate about sports and hybrid training, which fuels my discipline and drive for constant improvement.</p>
+        </div>
+    </section>
+
+    <!-- Tools & Platforms Section -->
+    <section id="tools" class="tools-section">
+        <div class="container">
+            <div class="tools-header fade-in">
+                <h2 class="tools-title">Tools & Platforms</h2>
+                <p class="tools-subtitle">Technologies and tools I work with</p>
+            </div>
+        </div>
+        <div class="ticker-container">
+            <div class="ticker-track">
+                <div class="tool-item">
+                    <img src="tools/github.png" alt="GitHub" class="tool-logo github">
+                    <span class="tool-name">GitHub</span>
+                </div>
+                                        <div class="tool-item">
+                            <img src="tools/gitlabnew.png" alt="GitLab" class="tool-logo keep-color">
+                            <span class="tool-name">GitLab</span>
+                        </div>
+                <div class="tool-item">
+                    <img src="tools/cursor.png" alt="Cursor" class="tool-logo">
+                    <span class="tool-name">Cursor</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/claude.png" alt="Claude" class="tool-logo">
+                    <span class="tool-name">Claude</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/openai.png" alt="OpenAI" class="tool-logo openai">
+                    <span class="tool-name">OpenAI</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/n8n.png" alt="n8n" class="tool-logo">
+                    <span class="tool-name">n8n</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/firebase.png" alt="Google Firebase" class="tool-logo keep-color">
+                    <span class="tool-name">Google Firebase</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/cloud.png" alt="Google Cloud" class="tool-logo keep-color">
+                    <span class="tool-name">Google Cloud</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/meta.png" alt="Meta Business Suite" class="tool-logo keep-color">
+                    <span class="tool-name">Meta Business Suite</span>
+                </div>
+                <!-- Duplicate for seamless scroll -->
+                <div class="tool-item">
+                    <img src="tools/github.png" alt="GitHub" class="tool-logo github">
+                    <span class="tool-name">GitHub</span>
+                </div>
+                                        <div class="tool-item">
+                            <img src="tools/gitlabnew.png" alt="GitLab" class="tool-logo keep-color">
+                            <span class="tool-name">GitLab</span>
+                        </div>
+                <div class="tool-item">
+                    <img src="tools/cursor.png" alt="Cursor" class="tool-logo">
+                    <span class="tool-name">Cursor</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/claude.png" alt="Claude" class="tool-logo">
+                    <span class="tool-name">Claude</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/openai.png" alt="OpenAI" class="tool-logo openai">
+                    <span class="tool-name">OpenAI</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/n8n.png" alt="n8n" class="tool-logo">
+                    <span class="tool-name">n8n</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/firebase.png" alt="Google Firebase" class="tool-logo keep-color">
+                    <span class="tool-name">Google Firebase</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/cloud.png" alt="Google Cloud" class="tool-logo keep-color">
+                    <span class="tool-name">Google Cloud</span>
+                </div>
+                <div class="tool-item">
+                    <img src="tools/meta.png" alt="Meta Business Suite" class="tool-logo keep-color">
+                    <span class="tool-name">Meta Business Suite</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">My professional journey and key accomplishments</p>
+            </div>
+            <div class="experience-list">
+                <div class="experience-item fade-in">
+                    <span class="experience-tag professional">Professional</span>
+                    <div class="experience-header">
+                        <div class="experience-top">
+                            <div>
+                                <h3 class="experience-company">US Health Connect</h3>
+                                <p class="experience-role">Generative AI Intern, Data Operations Team</p>
+                                <p class="experience-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Fort Washington, PA
+                                </p>
+                            </div>
+                            <div class="experience-date">May 2025 - Present</div>
+                        </div>
+                    </div>
+                    <div class="experience-bullets">
+                        <ul>
+                            <li>Built and deployed AI-powered tools, websites, and software in Cursor, n8n, and GitLab, streamlining workflows for internal teams and enhancing client healthcare education solutions.</li>
+                            <li>Led company-wide AI training sessions for audiences of 200+ employees, teaching practical applications of custom GPTs, AI agents, and low-code automation tools to increase productivity.</li>
+                            <li>Designed and implemented n8n AI agents to automate scheduling, email responses, and department-specific workflows, providing tailored AI solutions across all areas of the company.</li>
+                        </ul>
+                    </div>
+                </div>
                 
-                <div class="orbit-container" id="orbit-container">
-                    <!-- Icons will be added here via JavaScript -->
+                <div class="experience-item fade-in">
+                    <span class="experience-tag professional">Professional</span>
+                    <div class="experience-header">
+                        <div class="experience-top">
+                            <div>
+                                <h3 class="experience-company">Charkol Steakhouse</h3>
+                                <p class="experience-role">Head Social Media Manager</p>
+                                <p class="experience-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Freehold, NJ
+                                </p>
+                            </div>
+                            <div class="experience-date">April 2025 - Present</div>
+                        </div>
+                    </div>
+                    <div class="experience-bullets">
+                        <ul>
+                            <li>Ran targeted Meta and Google ads, growing Instagram by 8,500 followers in five months and boosting weekend reservations by 22.5% YoY.</li>
+                            <li>Created and managed high-impact social content strategies, ensuring each campaign outperformed the last through innovative marketing approaches and data-driven optimization.</li>
+                            <li>Developed and maintained the restaurant website with SEO, API integrations, and ad-to-reservation tracking.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item fade-in">
+                    <span class="experience-tag professional">Professional</span>
+                    <div class="experience-header">
+                        <div class="experience-top">
+                            <div>
+                                <h3 class="experience-company">Aurum Events and Catering</h3>
+                                <p class="experience-role">Schedule Manager, Server</p>
+                                <p class="experience-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Freehold, NJ
+                                </p>
+                            </div>
+                            <div class="experience-date">Mar. 2020 - Aug. 2024</div>
+                        </div>
+                    </div>
+                    <div class="experience-bullets">
+                        <ul>
+                            <li>Coordinate and manage shifts for a 20+ member team every weekend, fostering teamwork and ensuring smooth operations despite high turnover, demonstrating patience and strong leadership skills.</li>
+                            <li>Provide exceptional customer service by engaging with hundreds of new guests each weekend, maintaining a professional, friendly demeanor and ensuring high satisfaction in a fast-paced environment.</li>
+                            <li>Engaged in diverse tasks, including taking orders, bussing trays, and valeting cars when needed, showcasing flexibility, a strong work ethic, and a commitment to meeting guest needs.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item fade-in">
+                    <span class="experience-tag academic">Academic</span>
+                    <div class="experience-header">
+                        <div class="experience-top">
+                            <div>
+                                <h3 class="experience-company">Molner-Rolley College of Engineering and Computing</h3>
+                                <p class="experience-role">Student Ambassador</p>
+                                <p class="experience-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Columbia, SC
+                                </p>
+                            </div>
+                            <div class="experience-date">Jan. 2025 - Present</div>
+                        </div>
+                    </div>
+                    <div class="experience-bullets">
+                        <ul>
+                            <li>Selected to join a prestigious group of ambassadors representing 3,400 undergraduate students in the College of Engineering and Computing.</li>
+                            <li>Conduct weekly tours of the college and foster connections with prospective students, emphasizing the value of the engineering and computing journey.</li>
+                            <li>Deliver engaging presentations that showcase student success stories, innovative research, and the academic opportunities available at the university.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item fade-in">
+                    <span class="experience-tag academic">Academic</span>
+                    <div class="experience-header">
+                        <div class="experience-top">
+                            <div>
+                                <h3 class="experience-company">Alpha Kappa Psi, Beta Upsilon Chapter</h3>
+                                <p class="experience-role">Academic Chair</p>
+                                <p class="experience-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    Columbia, SC
+                                </p>
+                            </div>
+                            <div class="experience-date">Oct. 2024 - Present</div>
+                        </div>
+                    </div>
+                    <div class="experience-bullets">
+                        <ul>
+                            <li>Oversaw academic progression as the primary link to campus resources, supporting members' growth and success.</li>
+                            <li>Launched a tutoring program and weekly raffle system to reward academic achievement and encourage collaboration.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="section-divider"></div>
-        <div class="divider-icon"></div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-        <div class="content" id="education-content">
-            <h2 class="section-title">My Education</h2>
-            <div class="education-grid">
-                <div class="education-card">
-                    <h3 class="edu-title">Computer Science</h3>
-                    <p class="edu-subtitle">University of South Carolina, Molinaroli College of Engineering</p>
-                    <p class="edu-date">August 2024 - May 2028</p>
-                    <img src="gamecock/grid_athletics_logo.png" alt="University of South Carolina" class="school-logo">
-                </div>
-                <div class="education-card">
-                    <h3 class="edu-title">Business Administration (Minor)</h3>
-                    <p class="edu-subtitle">University of South Carolina, Darla Moore School of Business</p>
-                    <p class="edu-date">August 2024 - May 2028</p>
-                    <img src="gamecock/grid_athletics_logo.png" alt="University of South Carolina" class="school-logo">
-                </div>
-            </div>
-        </div>
-        <div class="section-divider"></div>
-        <div class="divider-icon"></div>
-    </section>
-
-    <!-- Resume Section -->
-    <section id="resume">
-        <div class="content" id="resume-content">
-            <h2 class="section-title">My Resume</h2>
-            <div class="resume-content">
-                <div class="resume-buttons">
-                    <a href="resume/DYLANCOBBRESUME.pdf" download class="resume-btn">
-                        <i class="fas fa-download"></i>
-                        Download Resume
-                    </a>
-                    <a href="resume/DYLANCOBBRESUME.pdf" target="_blank" class="resume-btn">
-                        <i class="fas fa-eye"></i>
-                        View Resume
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="section-divider"></div>
-        <div class="divider-icon"></div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
-        <div class="content" id="projects-content">
-            <h2 class="section-title">My Projects</h2>
-            <div class="projects-grid">
-                <!-- Deep Content Project -->
-                <div class="project-card">
-                    <div class="project-img" style="background: #f8f9fa; overflow: hidden; position: relative;">
-                        <a href="https://deepcontentv2.vercel.app" target="_blank" style="width:100%; height:100%; display:block; position: relative; overflow: hidden; text-decoration: none;">
-                            <!-- Deep Content Site Representation with less zoom -->
-                            <div style="width:100%; height:100%; display:flex; flex-direction:column; transform: scale(0.85); transform-origin: top center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(0.9)'" onmouseout="this.style.transform='scale(0.85)'">
-                                <!-- Header -->
-                                <div style="height:40px; background-color:#fff; display:flex; align-items:center; justify-content:space-between; padding:0 20px; border-bottom:1px solid #e5e7eb;">
-                                    <div style="font-weight:bold; font-size:16px; color:#000;">Deep Content</div>
-                                    <div style="display:flex; gap:20px; align-items:center;">
-                                        <div style="color:#000; font-size:14px;">Home</div>
-                                        <div style="background-color:#2563eb; color:#fff; padding:4px 12px; border-radius:5px; font-size:14px;">Sign in</div>
-                                    </div>
-                                </div>
-                                <!-- Main Content -->
-                                <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:15px; text-align:center; background-color:#f8f9fa;">
-                                    <div style="font-size:24px; font-weight:bold; color:#000; margin:10px 0;">Welcome to Deep Content</div>
-                                    <div style="font-size:14px; color:#333; margin-bottom:15px;">Research Made Easy. Create well-researched, authentic content in minutes.</div>
-                                    
-                                    <!-- Feature Cards -->
-                                    <div style="display:flex; gap:10px; margin-top:15px; width:100%; justify-content:center;">
-                                        <div style="background-color:#fff; padding:15px; border-radius:8px; width:80px; display:flex; flex-direction:column; align-items:center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-                                            <div style="color:#2563eb; font-size:18px; margin-bottom:5px;">💡</div>
-                                            <div style="font-weight:bold; color:#000; font-size:11px;">Smart Research</div>
-                                        </div>
-                                        <div style="background-color:#fff; padding:15px; border-radius:8px; width:80px; display:flex; flex-direction:column; align-items:center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-                                            <div style="color:#2563eb; font-size:18px; margin-bottom:5px;">✏️</div>
-                                            <div style="font-weight:bold; color:#000; font-size:11px;">Quality Content</div>
-                                        </div>
-                                        <div style="background-color:#fff; padding:15px; border-radius:8px; width:80px; display:flex; flex-direction:column; align-items:center; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-                                            <div style="color:#2563eb; font-size:18px; margin-bottom:5px;">⚡</div>
-                                            <div style="font-weight:bold; color:#000; font-size:11px;">Lightning Fast</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Google Sign In Button -->
-                                    <div style="margin-top:20px; background-color:#fff; border-radius:4px; padding:8px 15px; display:flex; align-items:center; box-shadow:0 1px 3px rgba(0,0,0,0.1); width:200px;">
-                                        <div style="color:#4285F4; font-size:18px; margin-right:10px;">G</div>
-                                        <div style="color:#333; font-size:14px;">Sign in with Google</div>
-                                    </div>
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">A showcase of my recent work and technical expertise</p>
+                <p style="font-style: italic; font-size: 0.85rem; color: var(--text-muted); margin-top: 12px;">
+                    <em>Some work is not pictured out of respect for companies I have worked for. To view additional work, please <a href="#contact" style="color: var(--accent-navy); text-decoration: underline;">contact me</a> below.</em>
+                </p>
+            </div>
+            
+            <div class="projects-container">
+                <!-- Personal Projects Dropdown -->
+                <div class="project-category">
+                    <div class="category-header" onclick="toggleCategory('personal')">
+                        <h3 class="category-title">Personal</h3>
+                        <i class="fas fa-plus category-icon" id="personal-icon"></i>
+                    </div>
+                    <div class="category-content" id="personal-content">
+                        <div class="projects-list">
+                            <div class="project-item" onclick="openModal('deepcontent')">
+                                <div class="project-overlay">View More</div>
+                                <img src="deep/deep.png" alt="Deep Content" class="project-image-small">
+                                <div class="project-info">
+                                    <h4 class="project-name">Deep Content</h4>
+                                    <p class="project-summary">AI-powered content creation tool that helps users develop authentic content</p>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Deep Content</h3>
-                        <p class="project-desc">A sophisticated content creation tool that helps users develop well-researched, authentic content that truly reflects their voice. Uses AI to guide the content creation process while ensuring the user's perspective remains central.</p>
-                        <div class="project-tags">
-                            <span class="tag">Next.js</span>
-                            <span class="tag">React</span>
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">Tailwind CSS</span>
-                        </div>
-                        <div style="margin-top: 15px;">
-                            <a href="https://github.com/dylancobb2525/deep-content.git" target="_blank" style="color: #7b68ee; text-decoration: none; font-size: 0.9rem;">
-                                <i class="fab fa-github"></i> View on GitHub
-                            </a>
-                            <a href="https://deepcontentv2.vercel.app" target="_blank" style="color: #7b68ee; text-decoration: none; margin-left: 15px; font-size: 0.9rem;">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Culinator Project -->
-                <div class="project-card">
-                    <div class="project-img" style="background: #f8f9fa; overflow: hidden; position: relative;">
-                        <a href="https://culinatorv1.vercel.app" target="_blank" style="width:100%; height:100%; display:block; position: relative; overflow: hidden; text-decoration: none;">
-                            <div style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                                <img src="Culinator/culinator.png" alt="Culinator" style="max-width: 80%; max-height: 70%; object-fit: contain;">
+                            <div class="project-item" onclick="openModal('culinator')">
+                                <div class="project-overlay">View More</div>
+                                <img src="Culinator/culinator.png" alt="Culinator" class="project-image-small">
+                                <div class="project-info">
+                                    <h4 class="project-name">Culinator</h4>
+                                    <p class="project-summary">AI recipe generator that creates personalized recipes based on ingredients</p>
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Culinator</h3>
-                        <p class="project-desc">An AI-powered recipe generator that creates personalized recipes based on your desired dish and available ingredients. Users can save recipes to their personal cookbook for easy access later.</p>
-                        <div class="project-tags">
-                            <span class="tag">Next.js</span>
-                            <span class="tag">React</span>
-                            <span class="tag">Tailwind CSS</span>
-                            <span class="tag">Firebase</span>
-                        </div>
-                        <div style="margin-top: 15px;">
-                            <a href="https://github.com/dylancobb2525/culinator" target="_blank" style="color: #7b68ee; text-decoration: none; font-size: 0.9rem;">
-                                <i class="fab fa-github"></i> View on GitHub
-                            </a>
-                            <a href="https://culinatorv1.vercel.app" target="_blank" style="color: #7b68ee; text-decoration: none; margin-left: 15px; font-size: 0.9rem;">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
+                            <div class="project-item" onclick="openModal('medical')">
+                                <div class="project-overlay">View More</div>
+                                <img src="jessica/jessica.png" alt="Medical Writer Portfolio" class="project-image-small">
+                                <div class="project-info">
+                                    <h4 class="project-name">Medical Writer Portfolio</h4>
+                                    <p class="project-summary">Professional medical writer portfolio with password protection</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Charkol Social Media Project -->
-                <div class="project-card">
-                    <div class="project-img" style="background: #333; overflow: hidden; position: relative;">
-                        <a href="https://www.instagram.com/thecharkol/" target="_blank" style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            <img src="charkol/charkol.png" alt="Charkol Social Media" style="max-width: 80%; max-height: 80%; object-fit: contain;">
-                        </a>
+
+                <!-- Professional Projects Dropdown -->
+                <div class="project-category">
+                    <div class="category-header" onclick="toggleCategory('professional')">
+                        <h3 class="category-title">Professional</h3>
+                        <i class="fas fa-plus category-icon" id="professional-icon"></i>
                     </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Charkol Social Media</h3>
-                        <p class="project-desc">Responsible for running and editing the Instagram account for this high-end steakhouse, along with running advertisements to increase engagement on the website and for the restaurant.</p>
-                        <div class="project-tags">
-                            <span class="tag">Social Media</span>
-                            <span class="tag">Marketing</span>
-                            <span class="tag">Advertising</span>
-                        </div>
-                        <div style="margin-top: 15px;">
-                            <a href="https://www.instagram.com/thecharkol/" target="_blank" style="color: #7b68ee; text-decoration: none; font-size: 0.9rem;">
-                                <i class="fab fa-instagram"></i> @thecharkol
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Load More Button for initial view -->
-            <div class="load-more-container" id="load-more-initial">
-                <button class="load-more-btn" id="load-more-btn">Load More</button>
-            </div>
-            
-            <!-- Hidden Projects Container (initially hidden) -->
-            <div class="projects-grid" id="additional-projects" style="display: none; margin-top: 20px;">
-                <!-- Medical Writer Portfolio Project -->
-                <div class="project-card">
-                    <div class="project-img" style="background: #fff; overflow: hidden; position: relative;">
-                        <a href="https://www.jessicabogdany.com" target="_blank" style="width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                            <img src="jessica/jessica.png" alt="Medical Writer Portfolio" style="max-width: 80%; max-height: 80%; object-fit: contain;">
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Medical Writer Portfolio</h3>
-                        <p class="project-desc">A fully functioning online portfolio for a professional medical writer, featuring password protection to secure sensitive career projects for potential employers to view.</p>
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Next.js</span>
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">Tailwind CSS</span>
-                        </div>
-                        <div style="margin-top: 15px;">
-                            <a href="https://github.com/dylancobb2525/JessicaRepo" target="_blank" style="color: #7b68ee; text-decoration: none; font-size: 0.9rem;">
-                                <i class="fab fa-github"></i> View on GitHub
-                            </a>
-                            <a href="https://www.jessicabogdany.com" target="_blank" style="color: #7b68ee; text-decoration: none; margin-left: 15px; font-size: 0.9rem;">
-                                <i class="fas fa-external-link-alt"></i> Live Site
-                            </a>
+                    <div class="category-content" id="professional-content">
+                        <div class="projects-list">
+                            <div class="project-item" onclick="openModal('charkol')">
+                                <div class="project-overlay">View More</div>
+                                <img src="charkol/charkol.png" alt="Charkol Social Media" class="project-image-small">
+                                <div class="project-info">
+                                    <h4 class="project-name">Charkol Social Media</h4>
+                                    <p class="project-summary">Social media management and advertising for high-end steakhouse</p>
+                                </div>
+                            </div>
+                            <div class="project-item" onclick="openModal('axis')">
+                                <div class="project-overlay">View More</div>
+                                <img src="profesh/axis.png" alt="AXIS Grand Rounds" class="project-image-small">
+                                <div class="project-info">
+                                    <h4 class="project-name">AXIS Grand Rounds</h4>
+                                    <p class="project-summary">Modern landing page for AXIS Medical Education with interactive booking</p>
+                                </div>
+                            </div>
+                            <div class="project-item" onclick="openModal('obesity')">
+                                <div class="project-overlay">View More</div>
+                                <img src="profesh/obesity.png" alt="Obesity Learning Center" class="project-image-small">
+                                <div class="project-info">
+                                    <h4 class="project-name">Obesity Learning Center</h4>
+                                    <p class="project-summary">Comprehensive educational hub for obesity management and treatment</p>
+                                </div>
+                            </div>
+                            <div class="project-item" onclick="openModal('mash')">
+                                <div class="project-overlay">View More</div>
+                                <img src="profesh/mash.png" alt="MASH Learning Center" class="project-image-small">
+                                <div class="project-info">
+                                    <h4 class="project-name">MASH Learning Center</h4>
+                                    <p class="project-summary">Educational platform for MASLD and MASH advances in healthcare</p>
+                                </div>
+                            </div>
+                            <div class="project-item" onclick="openModal('impact')">
+                                <div class="project-overlay">View More</div>
+                                <img src="profesh/impact.png" alt="Impact PH Learning Center" class="project-image-small">
+                                <div class="project-info">
+                                    <h4 class="project-name">Impact PH Learning Center</h4>
+                                    <p class="project-summary">Advanced educational center for pulmonary arterial hypertension</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Resumate Project -->
-                <div class="project-card">
-                    <div class="project-img" style="display: flex; justify-content: center; align-items: center; background-color: #333; color: #fff; font-weight: bold; font-size: 1.2rem;">
-                        Project in progress...
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Resumate</h3>
-                        <p class="project-desc">An AI-powered tool that creates resumes for people in just a few minutes. Built to help future pledges in my fraternity easily make their resumes for peer review.</p>
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">OpenAI</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Load More Button for collapsed view (initially hidden) -->
-            <div class="load-more-container" id="load-more-expanded" style="display: none; margin-top: 20px;">
-                <button class="load-more-btn" id="collapse-btn">Collapse</button>
             </div>
         </div>
-        <div class="section-divider"></div>
-        <div class="divider-icon"></div>
+    </section>
+
+    <!-- Project Modals -->
+    <div class="modal" id="deepcontent-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('deepcontent')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="deep/deep.png" alt="Deep Content" class="modal-image">
+                <h3 class="modal-title">Deep Content</h3>
+                <p class="modal-description">
+                    A sophisticated content creation tool that helps users develop well-researched, authentic content that truly reflects their voice. Uses AI to guide the content creation process while ensuring the user's perspective remains central.
+                </p>
+                <div class="modal-tech">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                </div>
+                <div class="modal-links">
+                    <a href="https://github.com/dylancobb2525/deep-content.git" target="_blank" class="modal-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://deepcontentv2.vercel.app" target="_blank" class="modal-link">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="culinator-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('culinator')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="Culinator/culinator.png" alt="Culinator" class="modal-image">
+                <h3 class="modal-title">Culinator</h3>
+                <p class="modal-description">
+                    An AI-powered recipe generator that creates personalized recipes based on your desired dish and available ingredients. Users can save recipes to their personal cookbook for easy access later.
+                </p>
+                <div class="modal-tech">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">Firebase</span>
+                </div>
+                <div class="modal-links">
+                    <a href="https://github.com/dylancobb2525/culinator" target="_blank" class="modal-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://culinatorv1.vercel.app" target="_blank" class="modal-link">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="medical-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('medical')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="jessica/jessica.png" alt="Medical Writer Portfolio" class="modal-image">
+                <h3 class="modal-title">Medical Writer Portfolio</h3>
+                <p class="modal-description">
+                    A fully functioning online portfolio for a professional medical writer, featuring password protection to secure sensitive career projects for potential employers to view.
+                </p>
+                <div class="modal-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                </div>
+                <div class="modal-links">
+                    <a href="https://github.com/dylancobb2525/JessicaRepo" target="_blank" class="modal-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.jessicabogdany.com" target="_blank" class="modal-link">
+                        <i class="fas fa-external-link-alt"></i> Live Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="charkol-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('charkol')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="charkol/charkol.png" alt="Charkol Social Media" class="modal-image">
+                <h3 class="modal-title">Charkol Social Media</h3>
+                <p class="modal-description">
+                    Responsible for running and editing the Instagram account for this high-end steakhouse, along with running advertisements to increase engagement on the website and for the restaurant.
+                </p>
+                <div class="modal-tech">
+                    <span class="tech-tag">Social Media</span>
+                    <span class="tech-tag">Marketing</span>
+                    <span class="tech-tag">Advertising</span>
+                </div>
+                <div class="modal-links">
+                    <a href="https://www.instagram.com/thecharkol/" target="_blank" class="modal-link">
+                        <i class="fab fa-instagram"></i> @thecharkol
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="axis-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('axis')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="profesh/axis.png" alt="AXIS Grand Rounds" class="modal-image">
+                <h3 class="modal-title">AXIS Grand Rounds</h3>
+                <p class="modal-description">
+                    A modern, responsive landing page for AXIS Medical Education featuring clean, professional design matching AXIS branding. Built with Next.js and TypeScript, it includes interactive modals for activities and booking, animated counter for provider statistics, and modern UI components with smooth animations. The platform delivers high-impact, flexible learning opportunities designed to elevate clinical teams through certified continuing medical education.
+                </p>
+                <div class="modal-tech">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">React</span>
+                </div>
+                <div class="modal-links">
+                    <a href="https://github.com/dylancobb2525/axis" target="_blank" class="modal-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://axismeded.com/GrandRounds/" target="_blank" class="modal-link">
+                        <i class="fas fa-external-link-alt"></i> Live Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="obesity-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('obesity')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="profesh/obesity.png" alt="Obesity Learning Center" class="modal-image">
+                <h3 class="modal-title">Obesity Learning Center</h3>
+                <p class="modal-description">
+                    A comprehensive educational hub for excellence in obesity education. Through expert interviews, case discussions, expert panels, and patient perspectives, leading global experts deliver the latest evidence-based guidance and real-world experiences for practicing clinicians. The platform serves endocrinologists, cardiologists, nephrologists, and primary care providers with cutting-edge content on obesity management and treatment strategies.
+                </p>
+                <div class="modal-tech">
+                    <span class="tech-tag">Medical Education</span>
+                    <span class="tech-tag">Healthcare Platform</span>
+                    <span class="tech-tag">Expert Content</span>
+                    <span class="tech-tag">Clinical Guidelines</span>
+                </div>
+                <div class="modal-links">
+                    <a href="https://github.com/dylancobb2525/obesity" target="_blank" class="modal-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://reachmd.com/advances-in-obesity-management/" target="_blank" class="modal-link">
+                        <i class="fas fa-external-link-alt"></i> Live Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="mash-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('mash')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="profesh/mash.png" alt="MASH Learning Center" class="modal-image">
+                <h3 class="modal-title">MASH Learning Center</h3>
+                <p class="modal-description">
+                    An advanced educational platform focusing on Metabolic dysfunction-Associated Steatotic Liver Disease (MASLD) and Metabolic dysfunction-Associated Steatohepatitis (MASH). The learning center provides healthcare professionals with the latest advances in diagnosis, treatment, and management of these increasingly prevalent conditions. Features expert-led content, clinical case studies, and evidence-based treatment protocols.
+                </p>
+                <div class="modal-tech">
+                    <span class="tech-tag">Medical Education</span>
+                    <span class="tech-tag">Hepatology</span>
+                    <span class="tech-tag">Clinical Research</span>
+                    <span class="tech-tag">Treatment Protocols</span>
+                </div>
+                <div class="modal-links">
+                    <a href="https://github.com/dylancobb2525/mash" target="_blank" class="modal-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://reachmd.com/advances-in-masld-mash/" target="_blank" class="modal-link">
+                        <i class="fas fa-external-link-alt"></i> Live Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="impact-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('impact')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="profesh/impact.png" alt="Impact PH Learning Center" class="modal-image">
+                <h3 class="modal-title">Impact PH Learning Center</h3>
+                <p class="modal-description">
+                    A specialized educational platform dedicated to advances in Pulmonary Arterial Hypertension (PAH). The learning center provides comprehensive resources for healthcare professionals treating patients with PAH, including the latest research findings, treatment guidelines, and clinical best practices. Features expert commentary, case-based learning, and interactive educational modules designed to improve patient outcomes in PAH management.
+                </p>
+                <div class="modal-tech">
+                    <span class="tech-tag">Medical Education</span>
+                    <span class="tech-tag">Cardiology</span>
+                    <span class="tech-tag">Pulmonary Medicine</span>
+                    <span class="tech-tag">Patient Care</span>
+                </div>
+                <div class="modal-links">
+                    <a href="https://github.com/dylancobb2525/pah" target="_blank" class="modal-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://reachmd.com/cme/advances-in-pah/" target="_blank" class="modal-link">
+                        <i class="fas fa-external-link-alt"></i> Live Site
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">My academic background and qualifications</p>
+            </div>
+            <div class="education-grid">
+                <div class="education-card fade-in">
+                    <div class="education-logo">
+                        <img src="gamecock/grid_athletics_logo.png" alt="University of South Carolina">
+                    </div>
+                    <h3 class="education-degree">Computer Information Systems</h3>
+                    <p class="education-school">University of South Carolina, Molinaroli College of Engineering</p>
+                    <p class="education-date">August 2024 - May 2028</p>
+                </div>
+                
+                <div class="education-card fade-in">
+                    <div class="education-logo">
+                        <img src="gamecock/grid_athletics_logo.png" alt="University of South Carolina">
+                    </div>
+                    <h3 class="education-degree">Business Administration (Minor)</h3>
+                    <p class="education-school">University of South Carolina, Darla Moore School of Business</p>
+                    <p class="education-date">August 2024 - May 2028</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-        <div class="content" id="contact-content">
-            <h2 class="section-title">Contact Me</h2>
-            <form class="contact-form" id="contactForm" action="https://formspree.io/f/mdkeggjy" method="POST">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
+    <section id="contact" class="section" style="padding-top: 20px;">
+        <div class="container">
+            <div class="contact-section fade-in">
+                <div class="section-header">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="section-subtitle">I'm always open to discussing new opportunities and projects</p>
                 </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group full">
-                    <input type="text" name="subject" placeholder="Subject">
-                </div>
-                <div class="form-group full">
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-        
-        <!-- Notification popup (hidden by default) -->
-        <div class="notification" id="notification">
-            <div class="notification-icon">
-                <i class="fas fa-check-circle"></i>
+                <form class="contact-form" action="https://formspree.io/f/mdkeggjy" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" class="form-input" required>
+                        </div>
+                        <div class="form-group full">
+                            <input type="text" name="subject" placeholder="Subject" class="form-input">
+                        </div>
+                        <div class="form-group full">
+                            <textarea name="message" placeholder="Your Message" class="form-textarea" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
             </div>
-            <div class="notification-title">Message Sent!</div>
-            <div class="notification-message">Thank you! I'll get back to you shortly.</div>
         </div>
     </section>
 
-    <!-- Include anime.js library -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Dylan Cobb. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
     <script src="lib/anime.min.js"></script>
-    
-    <!-- Include Vercel Speed Insights -->
     <script type="module" src="speed-insights.js"></script>
     
     <script>
-        // Social media data
-        const socialLinks = [
-            {
-                name: 'github',
-                image: 'GitHub/githublogo.jpeg',
-                url: 'https://github.com/dylancobb2525?tab=repositories',
-            },
-            {
-                name: 'linkedin',
-                image: 'LinkedIN/linkedinimage.jpeg',
-                url: 'https://www.linkedin.com/in/dylan-cobb25/',
-            },
-            {
-                name: 'twitter',
-                image: 'X/Twitter-X-Logo.jpeg',
-                url: 'https://x.com/dylancobbb',
-            }
-        ];
-        
-        // Create social media links
-        function createSocialLinks() {
-            const container = document.getElementById('orbit-container');
-            console.log('Creating social links, container:', container);
-            
-            socialLinks.forEach(link => {
-                const socialLink = document.createElement('a');
-                socialLink.classList.add('social-link', link.name);
-                socialLink.href = link.url;
-                socialLink.target = '_blank';
-                
-                const icon = document.createElement('img');
-                icon.src = link.image;
-                icon.alt = link.name;
-                icon.classList.add('social-icon');
-                
-                socialLink.appendChild(icon);
-                container.appendChild(socialLink);
-            });
-        }
-        
-        // Call function to create social links
-        createSocialLinks();
-        
-        // Apply cool animations to social links WITHOUT the opacity change
-        anime({
-            targets: '.social-link',
-            translateY: function() { return anime.random(-5, 5); },
-            scale: [1, 1.05],
-            delay: anime.stagger(200),
-            duration: 2000,
-            endDelay: 1000,
-            direction: 'alternate',
-            loop: true,
-            easing: 'easeInOutQuad'
-        });
-        
-        // Add a pulse glow effect to each social link individually
-        document.querySelectorAll('.social-link').forEach((el, i) => {
-            const colors = [
-                'rgba(110, 84, 148, 0.8)', // GitHub purple glow
-                'rgba(0, 119, 181, 0.8)',  // LinkedIn blue glow
-                'rgba(29, 161, 242, 0.8)'  // Twitter blue glow
-            ];
-            
-            anime({
-                targets: el,
-                boxShadow: [
-                    '0 5px 15px rgba(0, 0, 0, 0.3)',
-                    '0 5px 25px ' + colors[i],
-                    '0 5px 15px rgba(0, 0, 0, 0.3)'
-                ],
-                duration: 2000,
-                delay: i * 400,
-                endDelay: 500,
-                direction: 'alternate',
-                loop: true,
-                easing: 'easeInOutSine'
-            });
-        });
-        
-        // Nice hover animation for social links using anime.js
-        document.querySelectorAll('.social-link').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                anime({
-                    targets: link,
-                    scale: 1.15,
-                    rotate: {
-                        value: '+=5',
-                        duration: 400,
-                        easing: 'easeInOutSine'
-                    },
-                    duration: 300,
-                    easing: 'easeOutQuad'
-                });
-            });
-            
-            link.addEventListener('mouseleave', () => {
-                anime({
-                    targets: link,
-                    scale: 1.05,
-                    rotate: {
-                        value: '-=5',
-                        duration: 400,
-                        easing: 'easeInOutSine'
-                    },
-                    duration: 500,
-                    easing: 'easeOutElastic'
-                });
-            });
-        });
-        
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
-        
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            // Animate menu bars
-            anime({
-                targets: '#menu-toggle .bar',
-                rotate: (el, i) => {
-                    if (i === 0) return navLinks.classList.contains('active') ? 45 : 0;
-                    if (i === 1) return 0;
-                    if (i === 2) return navLinks.classList.contains('active') ? -45 : 0;
-                },
-                translateY: (el, i) => {
-                    if (i === 0) return navLinks.classList.contains('active') ? 8 : 0;
-                    if (i === 1) return 0;
-                    if (i === 2) return navLinks.classList.contains('active') ? -8 : 0;
-                },
-                opacity: (el, i) => {
-                    if (i === 1) return navLinks.classList.contains('active') ? 0 : 1;
-                    return 1;
-                },
-                duration: 300,
-                easing: 'easeOutQuad'
-            });
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Smooth scrolling and navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    
-                    // Reset menu bars
-                    anime({
-                        targets: '#menu-toggle .bar',
-                        rotate: 0,
-                        translateY: 0,
-                        opacity: 1,
-                        duration: 300,
-                        easing: 'easeOutQuad'
-                    });
-                }
-                
                 const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                const targetSection = document.querySelector(targetId);
                 
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70,
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-        
-        // Hero section animations
-        anime({
-            targets: '#memoji-container',
-            opacity: [0, 1],
-            translateY: [50, 0],
-            duration: 1000,
-            easing: 'easeOutExpo',
-            delay: 300
-        });
-        
-        anime({
-            targets: '#hero-title',
-            opacity: [0, 1],
-            translateY: [50, 0],
-            duration: 1000,
-            easing: 'easeOutExpo',
-            delay: 600
-        });
-        
-        anime({
-            targets: '#hero-text',
-            opacity: [0, 1],
-            translateY: [30, 0],
-            duration: 1000,
-            easing: 'easeOutExpo',
-            delay: 900
-        });
-        
-        // Scroll animations for sections
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: "0px 0px -100px 0px"
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = entry.target;
-                    
-                    // Animate the content
-                    anime({
-                        targets: target,
-                        opacity: [0, 1],
-                        translateY: [50, 0],
-                        duration: 800,
-                        easing: 'easeOutQuad'
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 70;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
                     });
-                    
-                    // Find and animate the section divider for this section
-                    const section = target.closest('section');
-                    if (section) {
-                        // Mark the section as already animated so we don't interfere with initial animations
-                        section.setAttribute('data-animated', 'true');
-                        
-                        const divider = section.querySelector('.section-divider');
-                        const dividerIcon = section.querySelector('.divider-icon');
-                        
-                        if (divider) {
-                            // Animate section divider line
-                            setTimeout(() => {
-                                divider.style.opacity = '1';
-                                divider.style.transform = 'scaleX(1)';
-                            }, 400);
-                        }
-                        
-                        if (dividerIcon) {
-                            // Animate divider icon with slight delay
-                            setTimeout(() => {
-                                dividerIcon.style.opacity = '1';
-                                dividerIcon.style.transform = 'translateX(-50%) scale(1)';
-                            }, 700);
-                        }
-                    }
-                    
-                    observer.unobserve(target);
                 }
             });
-        }, observerOptions);
-        
-        // Observe all content sections
-        const sections = document.querySelectorAll('.content');
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-        
-        // Project cards staggered animation
-        const projectObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                anime({
-                    targets: '.project-card',
-                    opacity: [0, 1],
-                    translateY: [50, 0],
-                    delay: anime.stagger(200),
-                    duration: 800,
-                    easing: 'easeOutQuad'
-                });
-                
-                projectObserver.unobserve(entries[0].target);
-            }
-        }, observerOptions);
-        
-        projectObserver.observe(document.querySelector('.projects-grid'));
-        
-        // Resume items staggered animation
-        const resumeObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                anime({
-                    targets: '.resume-item',
-                    opacity: [0, 1],
-                    translateX: [30, 0],
-                    delay: anime.stagger(150),
-                    duration: 800,
-                    easing: 'easeOutQuad'
-                });
-                
-                resumeObserver.unobserve(entries[0].target);
-            }
-        }, observerOptions);
-        
-        resumeObserver.observe(document.querySelector('.resume-content'));
-        
-        // Education cards staggered animation
-        const educationObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                anime({
-                    targets: '.education-card',
-                    opacity: [0, 1],
-                    translateY: [30, 0],
-                    delay: anime.stagger(200),
-                    duration: 800,
-                    easing: 'easeOutQuad'
-                });
-                
-                educationObserver.unobserve(entries[0].target);
-            }
-        }, observerOptions);
-        
-        educationObserver.observe(document.querySelector('.education-grid'));
-        
-        // Background animation with elegant lines
-        function createBackgroundAnimation() {
-            const container = document.getElementById('bg-animation');
-            
-            // Clear any existing elements
-            container.innerHTML = '';
-            
-            // More lines but lower individual opacity for subtlety
-            const lineCount = 30;
-            
-            // Create initial visible lines right away with smooth fade in
-            for (let i = 0; i < 12; i++) {
-                const initialLine = document.createElement('div');
-                initialLine.classList.add('bg-line');
-                
-                // Pre-position but start invisible
-                initialLine.style.width = `${Math.random() * 35 + 15}%`;
-                initialLine.style.left = `${Math.random() * 100}%`;
-                initialLine.style.top = `${Math.random() * 100}%`;
-                initialLine.style.height = `${Math.random() * 2 + 1}px`;
-                
-                container.appendChild(initialLine);
-                
-                // Fade in smoothly
-                setTimeout(() => {
-                    initialLine.style.opacity = '0.6';
-                }, i * 100);
-            }
-            
-            for (let i = 0; i < lineCount; i++) {
-                const line = document.createElement('div');
-                line.classList.add('bg-line');
-                
-                // Randomize line width and position
-                const width = Math.random() * 35 + 15;
-                line.style.width = `${width}%`;
-                line.style.left = `${Math.random() * 100}%`;
-                line.style.top = `${Math.random() * 100}%`;
-                line.style.height = `${Math.random() * 2 + 1.5}px`;
-                
-                container.appendChild(line);
-                
-                // Smoother animations with better easing and longer duration
-                anime({
-                    targets: line,
-                    opacity: [
-                        { value: 0, duration: 0 },
-                        { value: 0.7, duration: 1500, easing: 'easeInSine' },
-                        { value: 0.7, duration: 1000 },
-                        { value: 0, duration: 1500, easing: 'easeOutSine' }
-                    ],
-                    translateX: function() { 
-                        const direction = Math.random() > 0.5 ? 1 : -1;
-                        return [0, direction * (Math.random() * 120 + 50)]; 
-                    },
-                    translateY: function() {
-                        return anime.random(-25, 25);
-                    },
-                    duration: function() { return anime.random(5000, 8000); },
-                    delay: function() { return i * 150; },
-                    easing: 'easeInOutQuart',
-                    complete: function(anim) {
-                        // Instead of restarting immediately, set a small delay
-                        setTimeout(() => {
-                            // Reset position for next animation
-                            line.style.opacity = '0';
-                            line.style.left = `${Math.random() * 100}%`;
-                            line.style.top = `${Math.random() * 100}%`;
-                            // Small delay before restart to avoid abrupt changes
-                            setTimeout(() => {
-                                anim.restart();
-                            }, 100);
-                        }, 200);
-                    }
-                });
-                
-                // Add perpendicular lines with smoother animations
-                setTimeout(() => {
-                    const pathLine = document.createElement('div');
-                    pathLine.classList.add('bg-line');
-                    
-                    const isVertical = Math.random() > 0.6;
-                    if (isVertical) {
-                        pathLine.style.width = '2px';
-                        pathLine.style.height = `${Math.random() * 30 + 10}%`;
-                    } else {
-                        pathLine.style.width = `${Math.random() * 30 + 10}%`;
-                        pathLine.style.height = '2px';
-                    }
-                    
-                    pathLine.style.left = `${Math.random() * 100}%`;
-                    pathLine.style.top = `${Math.random() * 100}%`;
-                    
-                    container.appendChild(pathLine);
-                    
-                    anime({
-                        targets: pathLine,
-                        opacity: [
-                            { value: 0, duration: 0 },
-                            { value: 0.5, duration: 1200, easing: 'easeInSine' },
-                            { value: 0.5, duration: 1000 },
-                            { value: 0, duration: 1200, easing: 'easeOutSine' }
-                        ],
-                        translateX: function() { 
-                            return isVertical ? 0 : anime.random(-120, 120); 
-                        },
-                        translateY: function() { 
-                            return isVertical ? anime.random(-120, 120) : 0; 
-                        },
-                        duration: function() { return anime.random(6000, 9000); },
-                        easing: 'easeInOutQuart',
-                        complete: function(anim) {
-                            setTimeout(() => {
-                                pathLine.style.opacity = '0';
-                                pathLine.style.left = `${Math.random() * 100}%`;
-                                pathLine.style.top = `${Math.random() * 100}%`;
-                                setTimeout(() => {
-                                    anim.restart();
-                                }, 100);
-                            }, 200);
-                        }
-                    });
-                }, i * 300);
-            }
-        }
-        
-        // Initialize background animation immediately
-        createBackgroundAnimation();
-
-        // Also call again when DOM is fully loaded to ensure it runs
-        document.addEventListener('DOMContentLoaded', function() {
-            if (!document.getElementById('bg-animation').hasChildNodes()) {
-                createBackgroundAnimation();
-            }
         });
 
-        // Update the JavaScript to better handle the divider animations for all sections
-        // Update the function that handles divider animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create a separate observer for section dividers to ensure they're properly handled
-            const dividerObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const section = entry.target;
-                        const divider = section.querySelector('.section-divider');
-                        const dividerIcon = section.querySelector('.divider-icon');
-                        
-                        if (divider) {
-                            // Animate section divider line
-                            setTimeout(() => {
-                                divider.style.opacity = '1';
-                                divider.style.transform = 'scaleX(1)';
-                            }, 300);
-                        }
-                        
-                        if (dividerIcon) {
-                            // Animate divider icon with slight delay
-                            setTimeout(() => {
-                                dividerIcon.style.opacity = '1';
-                                dividerIcon.style.transform = 'translateX(-50%) scale(1)';
-                            }, 600);
-                        }
-                        
-                        // Only unobserve after animation is triggered
-                        dividerObserver.unobserve(section);
-                    }
-                });
-            }, {
-                threshold: 0.1, // Lower threshold to trigger earlier
-                rootMargin: "0px 0px -50px 0px" // Adjusted to trigger sooner
-            });
-            
-            // Observe all sections for divider animations
-            document.querySelectorAll('section').forEach(section => {
-                dividerObserver.observe(section);
-            });
-        });
-
-        // Function to highlight active navigation tab based on scroll position
-        function updateActiveNavigation() {
-            // Get all sections
+        // Active navigation highlighting
+        function updateActiveNav() {
             const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
+            const navLinks = document.querySelectorAll('.nav-link');
             
-            // Get current scroll position
-            const scrollPosition = window.scrollY;
-            
-            // Track if at least one section is currently in view
-            let activeSectionFound = false;
-            
-            // Check which section is in view
-            sections.forEach((section) => {
-                const sectionId = section.getAttribute('id');
-                const sectionTop = section.offsetTop - 150; // Offset for earlier activation
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
                 const sectionHeight = section.offsetHeight;
                 
-                // Check if section is currently in view (adding a small buffer)
-                const inView = (scrollPosition >= sectionTop - 100) && 
-                               (scrollPosition < sectionTop + sectionHeight + 100);
-                
-                // Check if section has been already animated (to avoid interfering with initial animations)
-                const hasBeenAnimated = section.getAttribute('data-animated') === 'true';
-                
-                if (inView) {
-                    // This section is in view
-                    activeSectionFound = true;
-                    
-                    // Ensure the section is fully visible
-                    section.style.opacity = 1;
-                    
-                    // Update navigation
-                    navLinks.forEach((link) => {
-                        // Reset all links
-                        link.classList.remove('active');
-                        
-                        // Make the current section's link active
-                        if (link.getAttribute('href') === `#${sectionId}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                } else if (hasBeenAnimated) {
-                    // Section is not in view AND has already been animated initially, so fade it out
-                    section.style.opacity = 0.2; // Slightly more faded for better contrast
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
                 }
             });
-            
-            // If no section is in view (e.g., between sections), fade all sections that have already been animated
-            if (!activeSectionFound) {
-                sections.forEach(section => {
-                    if (section.getAttribute('data-animated') === 'true') {
-                        section.style.opacity = 0.2; // Slightly more faded for better contrast
-                    }
-                });
-            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
         }
 
-        // Add scroll event listener
-        window.addEventListener('scroll', updateActiveNavigation);
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateActiveNavigation();
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
             
-            // Add hover effect to nav links
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => {
-                link.addEventListener('mouseenter', () => {
-                    link.style.opacity = '1';
-                });
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
                 
-                link.addEventListener('mouseleave', () => {
-                    // Only fade if not the active link
-                    if (!link.classList.contains('active')) {
-                        link.style.opacity = '0.5';
-                    }
-                });
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
             });
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            updateActiveNav();
+            animateOnScroll();
+        });
+
+        // Initial calls
+        updateActiveNav();
+        animateOnScroll();
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.8)';
+            }
+        });
+
+        // Form submission handling
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Handle contact form submission
-            const contactForm = document.getElementById('contactForm');
-            const notification = document.getElementById('notification');
+            const formData = new FormData(this);
             
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // Prevent the default form submission
-                
-                // Gather form data
-                const formData = new FormData(contactForm);
-                
-                // Submit the form to Formspree using fetch
-                fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Show the notification
-                        notification.classList.add('show');
-                        
-                        // Reset the form
-                        contactForm.reset();
-                        
-                        // Remove the notification after 7 seconds
-                        setTimeout(() => {
-                            notification.classList.remove('show');
-                        }, 7000);
-                        
-                        return response.json();
-                    } else {
-                        throw new Error('Form submission failed');
-                    }
-                })
-                .catch(error => {
-                    // Handle errors
-                    console.error('Error:', error);
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Create success notification
+                    const notification = document.createElement('div');
+                    notification.innerHTML = `
+                        <div style="position: fixed; top: 20px; right: 20px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; padding: 16px 24px; border-radius: 12px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                            <strong>Message Sent!</strong><br>
+                            Thank you! I'll get back to you shortly.
+                        </div>
+                    `;
+                    document.body.appendChild(notification);
                     
-                    // Change notification to error message
-                    const notificationIcon = notification.querySelector('.notification-icon i');
-                    const notificationTitle = notification.querySelector('.notification-title');
-                    const notificationMessage = notification.querySelector('.notification-message');
-                    
-                    notificationIcon.className = 'fas fa-exclamation-circle';
-                    notificationTitle.textContent = 'Error';
-                    notificationMessage.textContent = 'Something went wrong. Please try again later.';
-                    
-                    notification.classList.add('show');
-                    
+                    // Remove notification after 5 seconds
                     setTimeout(() => {
-                        notification.classList.remove('show');
-                    }, 7000);
-                });
+                        notification.remove();
+                    }, 5000);
+                    
+                    // Reset form
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again later.');
             });
         });
 
-        // Project navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadMoreBtn = document.getElementById('load-more-btn');
-            const collapseBtn = document.getElementById('collapse-btn');
-            const additionalProjects = document.getElementById('additional-projects');
-            const loadMoreInitial = document.getElementById('load-more-initial');
-            const loadMoreExpanded = document.getElementById('load-more-expanded');
+        // Scroll to top of page on load
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+
+        // Projects dropdown functionality
+        function toggleCategory(category) {
+            const content = document.getElementById(category + '-content');
+            const icon = document.getElementById(category + '-icon');
+            const header = content.previousElementSibling;
             
-            loadMoreBtn.addEventListener('click', function() {
-                // Show additional projects
-                additionalProjects.style.display = 'grid';
-                // Hide the initial button container
-                loadMoreInitial.style.display = 'none';
-                // Show the collapse button below additional projects
-                loadMoreExpanded.style.display = 'flex';
-            });
-            
-            collapseBtn.addEventListener('click', function() {
-                // Hide additional projects
-                additionalProjects.style.display = 'none';
-                // Hide the collapse button
-                loadMoreExpanded.style.display = 'none';
-                // Show the initial load more button
-                loadMoreInitial.style.display = 'flex';
-            });
+            // Toggle the clicked dropdown only
+            content.classList.toggle('active');
+            header.classList.toggle('active');
+        }
+
+        // Modal functionality
+        function openModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                const activeModal = document.querySelector('.modal.active');
+                if (activeModal) {
+                    activeModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const activeModal = document.querySelector('.modal.active');
+                if (activeModal) {
+                    activeModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
         });
     </script>
 </body>
-</html> 
+</html>
