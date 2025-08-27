@@ -1011,26 +1011,52 @@
                 padding: 0 24px;
             }
             
-            .nav-content {
-                padding: 0 16px;
+            /* Mobile navbar - thin, full-width, fixed to top */
+            .navbar {
+                top: 0;
+                left: 0;
+                right: 0;
+                transform: none;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                border: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 0;
+                padding: 8px 0;
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
             }
             
-            .navbar {
-                top: 10px;
-                padding: 8px 0;
-                min-height: auto;
+            .nav-content {
+                padding: 0 16px;
+                max-width: 100%;
             }
             
             .nav-links {
-                flex-wrap: wrap;
-                gap: 8px;
-                justify-content: center;
+                display: flex;
+                justify-content: space-between;
+                gap: 4px;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
             
             .nav-link {
-                padding: 6px 8px;
-                font-size: 0.75rem;
-                letter-spacing: 0.5px;
+                padding: 4px 8px;
+                font-size: 0.7rem;
+                letter-spacing: 0.3px;
+                white-space: nowrap;
+                flex-shrink: 0;
+                min-width: auto;
+            }
+            
+            /* Adjust all sections to account for fixed navbar */
+            .hero {
+                padding-top: 70px;
+            }
+            
+            .section {
+                scroll-margin-top: 60px;
             }
             
             .hero-content {
