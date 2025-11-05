@@ -628,139 +628,158 @@
             color: var(--accent-navy);
         }
 
-        /* Projects Section - Dropdown Style */
-        .projects-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+        /* Projects Section - Tab-Based Design */
+        .projects-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 60px;
+            border-bottom: 2px solid var(--border-color);
         }
 
-        .project-category {
+        .project-tab {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 16px 48px;
             background: transparent;
             border: none;
-            border-radius: 0;
-            overflow: hidden;
-        }
-
-        .category-header {
-            padding: 20px 0;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: transparent;
-            border-bottom: 2px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .category-header:hover {
-            border-bottom-color: var(--accent-navy);
-        }
-
-        .category-header.active {
-            border-bottom-color: var(--accent-navy);
-        }
-
-        .category-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .category-icon {
-            font-size: 1rem;
-            color: var(--accent-navy);
-            transform: rotate(0deg);
-            transition: transform 0.3s ease;
-            font-weight: 600;
-        }
-
-        .category-header.active .category-icon {
-            transform: rotate(45deg);
-        }
-
-        .category-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-        }
-
-        .category-content.active {
-            max-height: 1000px;
-        }
-
-        .projects-list {
-            padding: 24px;
-            display: grid;
-            gap: 16px;
-        }
-
-        .project-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
+            color: var(--text-secondary);
             cursor: pointer;
             position: relative;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .project-tab:hover {
+            color: var(--text-primary);
+            background: rgba(30, 58, 138, 0.05);
+        }
+
+        .project-tab.active {
+            color: var(--accent-navy);
+            border-bottom-color: var(--accent-navy);
+        }
+
+        .projects-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .projects-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             overflow: hidden;
-            display: flex;
-            gap: 16px;
-            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .project-item:hover {
+        .project-card:hover {
+            transform: translateY(-8px);
             border-color: var(--accent-navy);
-            background: var(--hover-bg);
+            box-shadow: 0 12px 40px rgba(30, 58, 138, 0.2);
         }
 
-        .project-item:hover .project-overlay {
-            opacity: 1;
+        .project-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        .project-overlay {
+        .project-card:hover .project-card-image {
+            transform: scale(1.05);
+        }
+
+        .project-card-content {
+            padding: 24px;
+        }
+
+        .project-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .project-card-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .project-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .project-tag {
+            background: rgba(30, 58, 138, 0.1);
+            color: var(--accent-navy);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-card-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(30, 58, 138, 0.9);
+            background: rgba(30, 58, 138, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .project-card:hover .project-card-overlay {
+            opacity: 1;
+        }
+
+        .project-card-overlay-text {
             color: white;
+            font-size: 1.2rem;
             font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .project-image-small {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-            flex-shrink: 0;
-            border: 1px solid var(--border-color);
-        }
-
-        .project-info {
-            flex: 1;
-        }
-
-        .project-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .project-summary {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         /* Modal Styles */
@@ -1069,8 +1088,13 @@
                 font-size: 2.5rem;
             }
             
-            .projects-container {
+            .projects-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .project-tab {
+                padding: 12px 24px;
+                font-size: 0.9rem;
             }
             
             .form-grid {
@@ -1416,90 +1440,162 @@
                 </p>
             </div>
             
-            <div class="projects-container">
-                <!-- Personal Projects Dropdown -->
-                <div class="project-category">
-                    <div class="category-header" onclick="toggleCategory('personal')">
-                        <h3 class="category-title">Personal</h3>
-                        <i class="fas fa-plus category-icon" id="personal-icon"></i>
+            <!-- Tab Navigation -->
+            <div class="projects-tabs">
+                <button class="project-tab active" onclick="switchProjectTab('personal')">Personal</button>
+                <button class="project-tab" onclick="switchProjectTab('professional')">Professional</button>
+            </div>
+
+            <!-- Personal Projects Content -->
+            <div class="projects-content active" id="personal-projects">
+                <div class="projects-grid">
+                    <div class="project-card" onclick="openModal('deepcontent')">
+                        <div class="project-card-overlay">
+                            <span class="project-card-overlay-text">
+                                <i class="fas fa-eye"></i> View Details
+                            </span>
+                        </div>
+                        <img src="deep/deep.png" alt="Deep Content" class="project-card-image">
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">Deep Content</h3>
+                            <p class="project-card-description">AI-powered content creation tool that helps users develop authentic, well-researched content that truly reflects their voice.</p>
+                            <div class="project-card-tags">
+                                <span class="project-tag">Next.js</span>
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">TypeScript</span>
+                                <span class="project-tag">AI</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="category-content" id="personal-content">
-                        <div class="projects-list">
-                            <div class="project-item" onclick="openModal('deepcontent')">
-                                <div class="project-overlay">View More</div>
-                                <img src="deep/deep.png" alt="Deep Content" class="project-image-small">
-                                <div class="project-info">
-                                    <h4 class="project-name">Deep Content</h4>
-                                    <p class="project-summary">AI-powered content creation tool that helps users develop authentic content</p>
-                                </div>
+
+                    <div class="project-card" onclick="openModal('culinator')">
+                        <div class="project-card-overlay">
+                            <span class="project-card-overlay-text">
+                                <i class="fas fa-eye"></i> View Details
+                            </span>
+                        </div>
+                        <img src="Culinator/culinator.png" alt="Culinator" class="project-card-image">
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">Culinator</h3>
+                            <p class="project-card-description">AI-powered recipe generator that creates personalized recipes based on your desired dish and available ingredients.</p>
+                            <div class="project-card-tags">
+                                <span class="project-tag">Next.js</span>
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">Firebase</span>
+                                <span class="project-tag">AI</span>
                             </div>
-                            <div class="project-item" onclick="openModal('culinator')">
-                                <div class="project-overlay">View More</div>
-                                <img src="Culinator/culinator.png" alt="Culinator" class="project-image-small">
-                                <div class="project-info">
-                                    <h4 class="project-name">Culinator</h4>
-                                    <p class="project-summary">AI recipe generator that creates personalized recipes based on ingredients</p>
-                                </div>
-                            </div>
-                            <div class="project-item" onclick="openModal('medical')">
-                                <div class="project-overlay">View More</div>
-                                <img src="jessica/jessica.png" alt="Medical Writer Portfolio" class="project-image-small">
-                                <div class="project-info">
-                                    <h4 class="project-name">Medical Writer Portfolio</h4>
-                                    <p class="project-summary">Professional medical writer portfolio with password protection</p>
-                                </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openModal('medical')">
+                        <div class="project-card-overlay">
+                            <span class="project-card-overlay-text">
+                                <i class="fas fa-eye"></i> View Details
+                            </span>
+                        </div>
+                        <img src="jessica/jessica.png" alt="Medical Writer Portfolio" class="project-card-image">
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">Medical Writer Portfolio</h3>
+                            <p class="project-card-description">Professional medical writer portfolio featuring password protection to secure sensitive career projects for potential employers.</p>
+                            <div class="project-card-tags">
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">Next.js</span>
+                                <span class="project-tag">TypeScript</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Professional Projects Dropdown -->
-                <div class="project-category">
-                    <div class="category-header" onclick="toggleCategory('professional')">
-                        <h3 class="category-title">Professional</h3>
-                        <i class="fas fa-plus category-icon" id="professional-icon"></i>
+            <!-- Professional Projects Content -->
+            <div class="projects-content" id="professional-projects">
+                <div class="projects-grid">
+                    <div class="project-card" onclick="openModal('charkol')">
+                        <div class="project-card-overlay">
+                            <span class="project-card-overlay-text">
+                                <i class="fas fa-eye"></i> View Details
+                            </span>
+                        </div>
+                        <img src="charkol/charkol.png" alt="Charkol Social Media" class="project-card-image">
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">Charkol Social Media</h3>
+                            <p class="project-card-description">Comprehensive social media management and advertising strategy for high-end steakhouse, driving engagement and reservations.</p>
+                            <div class="project-card-tags">
+                                <span class="project-tag">Marketing</span>
+                                <span class="project-tag">Meta Ads</span>
+                                <span class="project-tag">Content</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="category-content" id="professional-content">
-                        <div class="projects-list">
-                            <div class="project-item" onclick="openModal('charkol')">
-                                <div class="project-overlay">View More</div>
-                                <img src="charkol/charkol.png" alt="Charkol Social Media" class="project-image-small">
-                                <div class="project-info">
-                                    <h4 class="project-name">Charkol Social Media</h4>
-                                    <p class="project-summary">Social media management and advertising for high-end steakhouse</p>
-                                </div>
+
+                    <div class="project-card" onclick="openModal('axis')">
+                        <div class="project-card-overlay">
+                            <span class="project-card-overlay-text">
+                                <i class="fas fa-eye"></i> View Details
+                            </span>
+                        </div>
+                        <img src="profesh/axis.png" alt="AXIS Grand Rounds" class="project-card-image">
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">AXIS Grand Rounds</h3>
+                            <p class="project-card-description">Modern landing page for AXIS Medical Education featuring interactive booking and comprehensive program information.</p>
+                            <div class="project-card-tags">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">JavaScript</span>
                             </div>
-                            <div class="project-item" onclick="openModal('axis')">
-                                <div class="project-overlay">View More</div>
-                                <img src="profesh/axis.png" alt="AXIS Grand Rounds" class="project-image-small">
-                                <div class="project-info">
-                                    <h4 class="project-name">AXIS Grand Rounds</h4>
-                                    <p class="project-summary">Modern landing page for AXIS Medical Education with interactive booking</p>
-                                </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openModal('obesity')">
+                        <div class="project-card-overlay">
+                            <span class="project-card-overlay-text">
+                                <i class="fas fa-eye"></i> View Details
+                            </span>
+                        </div>
+                        <img src="profesh/obesity.png" alt="Obesity Learning Center" class="project-card-image">
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">Obesity Learning Center</h3>
+                            <p class="project-card-description">Comprehensive educational hub for obesity management and treatment, featuring expert interviews and case studies.</p>
+                            <div class="project-card-tags">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">Medical</span>
                             </div>
-                            <div class="project-item" onclick="openModal('obesity')">
-                                <div class="project-overlay">View More</div>
-                                <img src="profesh/obesity.png" alt="Obesity Learning Center" class="project-image-small">
-                                <div class="project-info">
-                                    <h4 class="project-name">Obesity Learning Center</h4>
-                                    <p class="project-summary">Comprehensive educational hub for obesity management and treatment</p>
-                                </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openModal('mash')">
+                        <div class="project-card-overlay">
+                            <span class="project-card-overlay-text">
+                                <i class="fas fa-eye"></i> View Details
+                            </span>
+                        </div>
+                        <img src="profesh/mash.png" alt="MASH Learning Center" class="project-card-image">
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">MASH Learning Center</h3>
+                            <p class="project-card-description">Educational platform for MASLD and MASH advances in healthcare, providing cutting-edge medical knowledge.</p>
+                            <div class="project-card-tags">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">Medical</span>
                             </div>
-                            <div class="project-item" onclick="openModal('mash')">
-                                <div class="project-overlay">View More</div>
-                                <img src="profesh/mash.png" alt="MASH Learning Center" class="project-image-small">
-                                <div class="project-info">
-                                    <h4 class="project-name">MASH Learning Center</h4>
-                                    <p class="project-summary">Educational platform for MASLD and MASH advances in healthcare</p>
-                                </div>
-                            </div>
-                            <div class="project-item" onclick="openModal('impact')">
-                                <div class="project-overlay">View More</div>
-                                <img src="profesh/impact.png" alt="Impact PH Learning Center" class="project-image-small">
-                                <div class="project-info">
-                                    <h4 class="project-name">Impact PH Learning Center</h4>
-                                    <p class="project-summary">Advanced educational center for pulmonary arterial hypertension</p>
-                                </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openModal('impact')">
+                        <div class="project-card-overlay">
+                            <span class="project-card-overlay-text">
+                                <i class="fas fa-eye"></i> View Details
+                            </span>
+                        </div>
+                        <img src="profesh/impact.png" alt="Impact PH Learning Center" class="project-card-image">
+                        <div class="project-card-content">
+                            <h3 class="project-card-title">Impact PH Learning Center</h3>
+                            <p class="project-card-description">Advanced educational center for pulmonary arterial hypertension, featuring comprehensive training modules.</p>
+                            <div class="project-card-tags">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">Medical</span>
                             </div>
                         </div>
                     </div>
@@ -1929,14 +2025,15 @@
         });
 
         // Projects dropdown functionality
-        function toggleCategory(category) {
-            const content = document.getElementById(category + '-content');
-            const icon = document.getElementById(category + '-icon');
-            const header = content.previousElementSibling;
+        // Tab switching functionality for projects
+        function switchProjectTab(tab) {
+            // Remove active class from all tabs and content
+            document.querySelectorAll('.project-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.projects-content').forEach(c => c.classList.remove('active'));
             
-            // Toggle the clicked dropdown only
-            content.classList.toggle('active');
-            header.classList.toggle('active');
+            // Add active class to clicked tab and corresponding content
+            event.target.classList.add('active');
+            document.getElementById(tab + '-projects').classList.add('active');
         }
 
         // Modal functionality
