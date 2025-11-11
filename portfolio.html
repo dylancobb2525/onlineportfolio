@@ -407,7 +407,7 @@
             gap: 32px;
         }
 
-        .experience-list .experience-item:nth-child(5) {
+        .experience-list .experience-item:nth-child(6) {
             grid-column: 1 / -1;
             max-width: 50%;
             margin: 0 auto;
@@ -419,7 +419,7 @@
                 gap: 24px;
             }
             
-            .experience-list .experience-item:nth-child(5) {
+            .experience-list .experience-item:nth-child(6) {
                 grid-column: auto;
                 max-width: 100%;
                 margin: 0;
@@ -537,6 +537,133 @@
             left: 0;
             color: var(--accent-navy);
             font-weight: bold;
+        }
+
+        /* Featured Cognodes Experience */
+        .experience-featured {
+            grid-column: 1 / -1;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 4px 32px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 32px;
+            box-shadow: 0 10px 40px rgba(30, 58, 138, 0.3);
+        }
+
+        .experience-featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url(tools/cognodesob.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        .experience-featured::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.75), rgba(236, 72, 153, 0.75)),
+                        rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .experience-featured * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .experience-featured:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(30, 58, 138, 0.4);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .featured-logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: -50px;
+        }
+
+        .featured-logo-link {
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .featured-logo-link:hover {
+            transform: scale(1.08) translateY(-3px);
+        }
+
+        .featured-logo {
+            width: 280px;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+            transition: filter 0.3s ease;
+        }
+
+        .featured-logo-link:hover .featured-logo {
+            filter: drop-shadow(0 8px 20px rgba(59, 130, 246, 0.6));
+        }
+
+        .featured-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .featured-role {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #60a5fa;
+            margin-bottom: 2px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .featured-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--text-primary);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .experience-featured {
+                padding: 3px 24px;
+                margin-bottom: 24px;
+            }
+
+            .featured-logo {
+                width: 180px;
+            }
+
+            .featured-logo-link:hover {
+                transform: scale(1.05) translateY(-2px);
+            }
+            
+            .featured-logo-container {
+                margin-bottom: -35px;
+            }
+
+            .featured-role {
+                font-size: 0.9rem;
+                margin-bottom: 2px;
+            }
+
+            .featured-description {
+                font-size: 0.85rem;
+                line-height: 1.3;
+            }
         }
 
         /* Projects Section - Cards Grid */
@@ -1307,6 +1434,21 @@
                 <p class="section-subtitle">My professional journey and key accomplishments</p>
             </div>
             <div class="experience-list">
+                <!-- Featured Cognodes Experience -->
+                <div class="experience-featured fade-in">
+                    <div class="featured-logo-container">
+                        <a href="https://www.cognodes.com" target="_blank" rel="noopener noreferrer" class="featured-logo-link">
+                            <img src="tools/cognodes.png" alt="Cognodes Logo" class="featured-logo">
+                        </a>
+                    </div>
+                    <div class="featured-content">
+                        <p class="featured-role">Co-Founder</p>
+                        <p class="featured-description">
+                            At Cognodes, we're an AI consulting firm dedicated to creating agentic AI solutions that transform how businesses operate. We specialize in building intelligent automation systems that save our clients both time and money while significantly improving operational efficiency. Our team provides comprehensive AI integration services to service-based businesses, from workflow automation to custom AI agent development. We pride ourselves on leveraging cutting-edge AI technology to deliver measurable results and help companies stay ahead in an increasingly competitive landscape.
+                        </p>
+                    </div>
+                </div>
+
                 <div class="experience-item fade-in">
                     <span class="experience-tag professional">Professional</span>
                     <div class="experience-header">
